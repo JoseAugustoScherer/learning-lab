@@ -14,18 +14,19 @@ import java.sql.SQLException;
  * Connection pool using HikariCP's DataSource
  * --------------------
  * --------------------
- * Documentation: https://www.baeldung.com/hikaricp
+ * Documentation: <a href="https://www.baeldung.com/hikaricp">https://www.baeldung.com/hikaricp</a>
  * --------------------
  */
 public class DataSource {
 
-    private static HikariConfig config = new HikariConfig();
-    private static HikariDataSource ds;
+    private static final HikariConfig config = new HikariConfig();
+    private static final HikariDataSource ds;
 
     static {
-        config.setJdbcUrl ( "jdbc:mysql://localhost:3306/YOUR_DATABASE_HERE" );
-        config.setUsername( "YOUR_USERNAME" );
-        config.setPassword( "YOUR_PASSWORD" );
+        config.setDriverClassName("com.mysql.cj.jdbc.Driver");
+        config.setJdbcUrl ( "jdbc:mysql://localhost:3306/crud_01" );
+        config.setUsername( "root" );
+        config.setPassword( "x3RyTrWa" );
         config.addDataSourceProperty( "cachePrepStmts", "true" );
         config.addDataSourceProperty( "prepStmtCacheSize", "250" );
         config.addDataSourceProperty( "prepStmtCacheSqlLimit", "2048" );

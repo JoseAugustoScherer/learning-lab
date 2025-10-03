@@ -145,17 +145,18 @@ public class UserDAO {
     public User findUserByLogin( String login ) throws SQLException {
         String sql_query = "SELECT * FROM user WHERE login = ?";
         User user = null;
+
         try ( Connection conn = DataSource.getConnection();
                 PreparedStatement stmt = conn.prepareStatement( sql_query ) ) {
 
             stmt.setString( 1, login );
             try ( ResultSet rs = stmt.executeQuery() ) {
-                while( rs.next() ) {
-                    user = mapResultSetToUser( rs );
+                while (rs.next()) {
+                    user = mapResultSetToUser(rs);
                 }
             }
         } catch ( SQLException e ){
-            throw new RuntimeException( "Error fetching user by Login: " + e );
+            throw new RuntimeException( "Error fetching user by Login: " + login, e );
         }
         return user;
     }

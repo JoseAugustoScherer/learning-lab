@@ -27,19 +27,38 @@ public class LoginController
     extends
         HttpServlet {
 
-    UserDAO userDAO = new UserDAO();
+    private final UserDAO userDAO = new UserDAO();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        /* The file "/WEB-INF/jsp/fragments/header.jsp" contains the logout action */
+
+        String action = req.getParameter( "action" );
+
+        if ( "logout".equals( action ) ) {
+            HttpSession session = req.getSession( false );
+            if ( session != null ) {
+                session.invalidate();
+            }
+
+            resp.sendRedirect( req.getContextPath() + "/login" );
+        } else {
+            RequestDispatcher rd = req.getRequestDispatcher( "/WEB-INF/jsp/login.jsp" );
+            rd.forward( req, resp );
+        }
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String login    = req.getParameter( "login" );
         String password = req.getParameter( "password" );
 
         User user = null;
         try {
             user = userDAO.findUserByLogin( login );
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+        } catch ( SQLException e ) {
+            throw new RuntimeException( e );
         }
 
         if ( user != null && user.getPassword().equals( password ) ) {
@@ -48,7 +67,7 @@ public class LoginController
 
             resp.sendRedirect( req.getContextPath() + "/dashboard" );
         } else {
-            req.setAttribute( "errorMessage", "Invalid login or password" );
+            req.setAttribute( "errorMessage", "Dados inválidos!" );
 
             RequestDispatcher rd = req.getRequestDispatcher( "/WEB-INF/jsp/login.jsp" );
             rd.forward( req, resp );

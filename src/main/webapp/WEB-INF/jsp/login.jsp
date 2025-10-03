@@ -7,6 +7,9 @@
 --%>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+
+<!doctype html>
 <html lang="pt-br">
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,6 +24,9 @@
             <img src="../../images/user-image.png" alt="Silhueta de uma pessoa">
             <hr class="line">
         </div>
+        <br>
+
+        <jsp:include page="/WEB-INF/fragments/messages.jspf" />
         
         <form action="${pageContext.request.contextPath}/login" method="post" >
 
@@ -32,7 +38,7 @@
             <label for="password">SENHA:</label>
             <input class="pwrd-input" type="password" name="password" id="password" required>
 
-            <button class="btn" type="submit">ENTRAR</button>
+            <input class="button" type="submit" value="ENTRAR">
         </form>
 
         <a href="${pageContext.request.contextPath}/resetPassword">Esqueci minha senha!</a>

@@ -24,9 +24,9 @@ public class DataSource {
 
     static {
         config.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        config.setJdbcUrl ( "jdbc:mysql://localhost:3306/crud_01" );
-        config.setUsername( "root" );
-        config.setPassword( "x3RyTrWa" );
+        config.setJdbcUrl ( "jdbc:mysql://localhost:3306/DATABASE_NAME" );
+        config.setUsername( "USER" );
+        config.setPassword( "PASSWORD" );
         config.addDataSourceProperty( "cachePrepStmts", "true" );
         config.addDataSourceProperty( "prepStmtCacheSize", "250" );
         config.addDataSourceProperty( "prepStmtCacheSqlLimit", "2048" );

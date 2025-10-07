@@ -7,7 +7,16 @@ This is a web application using JPA. The goal is to improve it day by day by add
 
 ## How to run 💻
 ### There are two ways to run this app
-- Tomcat: Currently, there’s no UI implemented (as of 30/09/25), so running via Tomcat is not recommended 🐛
+- Tomcat;
 - Test class: Use this class to test the CRUD operations for users 🙃
+
 <br>
+
+## Connection with DB 📁
+- Use MySQL;
+- The database schema is located in the root directory of the project;
+- Update the DataSource.java class with your database name, username, and password;
+
+<br> 
+
 ❗ // TODO: Add setup and usage instructions (e.g., how to run the app, configure database)
